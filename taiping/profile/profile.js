@@ -16,6 +16,13 @@ if (userDataString) {
     if(document.getElementById("profile-born")) document.getElementById("profile-born").textContent = userData.birthdate;
 }
 
+const back = document.getElementById("back");
+if (back){
+    back.addEventListener("click", function(){
+        window.location.href ="/taiping/taiping.html"
+    })
+}
+
 // 3. منطق زر تسجيل الخروج
 const logoutBtn = document.getElementById("logout-btn");
 if (logoutBtn) {
