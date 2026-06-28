@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="Icon" href="/taiping/img/1.png">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #001;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* ترتيب العناصر عمودياً ليصبح النص فوق الفيديو */
+            align-items: center;
+            padding-top: 100px; 
+            font-family: Arial, sans-serif;
+        }
+
+        /* تنسيق نص الإرشاد */
+        .instruction-text {
+            color: #ffffff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            transition: opacity 0.5s ease; /* تأثير اختفاء ناعم */
+        }
+        
+        .video-container {
+            position: relative;
+            width: 90vw; 
+            height: 70vh; 
+            overflow: hidden;
+            cursor: pointer; /* تحويل شكل الماوس ليد عند الوقوف على الفيديو */
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+<!-- الكلمة الإرشادية فوق الفيديو -->
+<div id="clickPrompt" class="instruction-text">اضغط على الفيديو</div>
+
+<div class="video-container" id="videoBox">
+    <video id="myVideo" src="taiping/vid/welcome.mp4" autoplay muted></video>
+</div>
+
+<audio src="taiping/img/welcom.mp3" id="bg-audio2"></audio>
+<audio src="taiping/img/welcome2.mp3" id="bg-audio"></audio>
+
+<script>
+  var video = document.getElementById('myVideo');
+  var audio1 = document.getElementById('bg-audio2');
+  var audio2 = document.getElementById('bg-audio');
+  var promptText = document.getElementById('clickPrompt');
+  var videoBox = document.getElementById('videoBox');
+
+  var audio1Ended = false;
+  var audio2Ended = false;
+  var hasClicked = false;
+
+  // تشغيل الأصوات واختفاء النص عند الضغط على حاوية الفيديو
+  videoBox.addEventListener('click', function() {
+    if (!hasClicked) {
+        audio1.play();
+        audio2.play();
+        promptText.style.opacity = '0'; // إخفاء الكلمة تدريجياً
+        hasClicked = true;
+    }
+  });
+
+  // إذا انتهى الفيديو ولكن الصوت ما زال يعمل، قم بإعادة تشغيل الفيديو من البداية
+  video.addEventListener('ended', function() {
+      if (!audio1Ended || !audio2Ended) {
+          video.currentTime = 0;
+          video.play();
+      }
+  });
+
+  // دالة الفحص والانتقال بعد انتهاء الصوتين تماماً
+  function checkAndRedirect() {
+      if (audio1Ended && audio2Ended) {
+          window.location.href = "taiping/taiping.html";
+      }
+  }
+
+  // مراقبة انتهاء الصوت الأول
+  audio1.addEventListener('ended', function() {
+      audio1Ended = true;
+      checkAndRedirect();
+  });
+
+  // مراقبة انتهاء الصوت الثاني
+  audio2.addEventListener('ended', function() {
+      audio2Ended = true;
+      checkAndRedirect();
+  });
+</script>
+</body>
+</html>

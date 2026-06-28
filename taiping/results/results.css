@@ -1,0 +1,83 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    background: #0b0f1a;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+/* Container */
+.container {
+    width: 65%;
+    margin: auto;
+    margin-top: 50px;
+}
+.container img{
+    height: 100px;
+    width: 100px;
+    flex-direction: row-reverse; 
+}
+
+/* Search Box */
+#searchBox {
+    width: 100%;
+    padding: 15px 25px;
+    border-radius: 40px;
+    border: none;
+    font-size: 18px;
+    margin-bottom: 40px;
+    outline: none;
+    background: #eaeaea;
+}
+
+/* Result block */
+.result {
+    margin-bottom: 30px;
+}
+
+/* Title link */
+.result a {
+    color: #4da6ff;
+    font-size: 20px;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+    transition: 0.2s;
+}
+
+.result a:hover {
+    text-decoration: underline;
+    color: #82c4ff;
+}
+
+/* Link URL (اختياري) */
+.result .url {
+    font-size: 13px;
+    color: #9aa0a6;
+    margin-bottom: 5px;
+}
+
+/* Description */
+.result p {
+    font-size: 14px;
+    color: #bdc1c6;
+    line-height: 1.6;
+}
+
+/* Divider */
+.result:not(:last-child) {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 20px;
+}
+
+/* Hover effect */
+.result:hover {
+    transform: translateX(5px);
+    transition: 0.2s;
+}
